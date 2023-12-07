@@ -20,21 +20,12 @@ from herbie import Herbie, Herbie_latest, FastHerbie
 
 ###Download some native coordinate wind data from the HRRR usign Herbie
 ###(note that we don't use the pressure level data here as it is likely smoothed!)
-H = Herbie("2023-12-07", searchString="40 hybrid level:", save_dir='/home/shawn/hrrr_grib',
+H = Herbie("2023-12-07", searchString="40 hybrid level:",
  model="hrrr",product="nat",freq="1H",member=1,fxx=6,verbose=True,ovewrite=True)
 
 uu=H.xarray(":UGRD:40 hybrid level:", remove_grib=False).u.values
 vv=H.xarray(":VGRD:40 hybrid level:", remove_grib=False).v.values
 
-exp="HRRR"
-expstring=str("HRRR")
-varname="KE"
-units="m^2/s^2"
-datetime="2021071900_002"
-vertlevel="700"
-vertlevstring="700mb"
-subtitle=""
-expname="HRRR"
 resolution=3.0 # approx resolution in KM
 
 # Calculate DCT 2D spectral variance #
