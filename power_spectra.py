@@ -1,14 +1,9 @@
-import pathlib
-import os, fnmatch, sys
-from os.path import expanduser
 import xarray as xr
 import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib.ticker as mticker
 from matplotlib import cm
-import matplotlib.pyplot as pl
 import scipy
-import copy
 import scipy.stats as stats
 import csv
 from herbie import Herbie, Herbie_latest, FastHerbie
