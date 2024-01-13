@@ -1,5 +1,5 @@
 import xarray as xr
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as pl
 import numpy as np
 import matplotlib.ticker as mticker
 from matplotlib import cm
@@ -56,11 +56,7 @@ knrm = knrm.flatten()
 
 ##############################################################################################
 # Epsilon is needed to deal with the fact that stats.binned_statistic 
-# works with bin intervals that are closed on the left and open on the right
-# whereas we need the opposite in order to follow Bertrand's paper.
-# A rule of thumb for the largest epsilon that could still work can be derived from the grid dimensions. 
-# The larger the grid the smaller the epsilon needed. 
-# This prevents the possibility that the program fails to work as specified for large grids.
+# works with bin intervals that are closed on the left and open on the right.
 eps0 = 1.e-1
 eps  = eps0*np.sqrt(1/nbwx)
 ##############################################################################################
@@ -76,7 +72,7 @@ uu_pspec1_py = Abins[1:]
 
 A1bins = uu_pspec1_py[0::2]
 A2bins = uu_pspec1_py[1::2]
-uu_pspec1_py = A1bins[0:len(A1bins)-1] + A2bins
+uu_pspec1_py = A1bins[0:len(A1bins)] + A2bins
 wavenumbers = np.arange(0.,nbwv/2, 1)
 
 print(wavenumbers)
@@ -89,8 +85,8 @@ pl.ylabel("KE power spectrum [m^2/s^2]")
 pl.tight_layout()
 #pl.legend(['test'])
 pl.legend(loc="lower left")
-plt.title('test')
-plt.gca().invert_xaxis()
+pl.title('test')
+pl.gca().invert_xaxis()
 pl.savefig("power_spec", dpi = 300, bbox_inches = "tight")
 pl.close()
 print("plotting complete")
